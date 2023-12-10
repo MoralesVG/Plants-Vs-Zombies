@@ -39,6 +39,7 @@ Uses Java and JavaFx.
 1. Singleton: For the database and for shovel feature, as we need only one reference through out the game.
 2. Iterator - To ensure that Plant, Zombie and Lawnmower lists are accessed in a synchronized way.
 3. Facade for menu based implementation
+4. Template was implemented to handle the different Day and Night themes in GamePlayController
 
 
 ## Screenshots from the game
