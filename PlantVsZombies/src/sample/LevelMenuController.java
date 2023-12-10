@@ -75,7 +75,7 @@ public class LevelMenuController {
             nightMode.setDisable(false);
             dayMode.setVisible(false);
             dayMode.setDisable(true);
-            GamePlayController.theme = "night";
+            //GamePlayController.theme = "night";
         }
         int l=Main.getDatabase().getMaxLevel();
         level2button.setDisable(true);
@@ -122,51 +122,125 @@ public class LevelMenuController {
 
     @FXML
     void launchLevel1(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        GamePlayController controller = fxmlLoader.<GamePlayController>getController();
-        controller.initData(1, new DataTable(1));
-        levelRoot.getChildren().setAll(pane);
+
+        if (status){
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerDay controller = fxmlLoader.<GamePlayControllerDay>getController();
+            controller.initData(1, new DataTable(1));
+            
+            levelRoot.getChildren().setAll(pane);
+        }else {
+        	
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerNight controller = fxmlLoader.<GamePlayControllerNight>getController();
+            controller.initData(1, new DataTable(1));
+            
+            levelRoot.getChildren().setAll(pane);
+        }
+
+        
 
     }
 
     @FXML
     void launchLevel2(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        GamePlayController controller = fxmlLoader.<GamePlayController>getController();
-        controller.initData(2, new DataTable(2));
-        levelRoot.getChildren().setAll(pane);
+
+        if (status){
+        	
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerDay controller = fxmlLoader.<GamePlayControllerDay>getController();
+            controller.initData(2, new DataTable(2));
+            
+            levelRoot.getChildren().setAll(pane);
+        }else {
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerNight controller = fxmlLoader.<GamePlayControllerNight>getController();
+            controller.initData(2, new DataTable(2));
+            
+            levelRoot.getChildren().setAll(pane);
+        }
+       
 
     }
 
     @FXML
     void launchLevel3(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        GamePlayController controller = fxmlLoader.<GamePlayController>getController();
-        controller.initData(3, new DataTable(3));
-        levelRoot.getChildren().setAll(pane);
+
+        if (status){
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerDay controller = fxmlLoader.<GamePlayControllerDay>getController();
+            controller.initData(3, new DataTable(3));
+            
+            levelRoot.getChildren().setAll(pane);
+        }else {
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerNight controller = fxmlLoader.<GamePlayControllerNight>getController();
+            controller.initData(3, new DataTable(3));
+            
+            levelRoot.getChildren().setAll(pane);
+        }
+      
 
     }
 
     @FXML
     void launchLevel4(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        GamePlayController controller = fxmlLoader.<GamePlayController>getController();
-        controller.initData(4, new DataTable(4));
-        levelRoot.getChildren().setAll(pane);
+
+        if (status){
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerDay controller = fxmlLoader.<GamePlayControllerDay>getController();
+            controller.initData(4, new DataTable(4));
+            
+            levelRoot.getChildren().setAll(pane);
+        }else {
+        	
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerNight controller = fxmlLoader.<GamePlayControllerNight>getController();
+            controller.initData(4, new DataTable(4));
+            
+            levelRoot.getChildren().setAll(pane);
+        }
+        
 
     }
 
     @FXML
     void launchLevel5(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        GamePlayController controller = fxmlLoader.<GamePlayController>getController();
-        controller.initData(5, new DataTable(5));
-        levelRoot.getChildren().setAll(pane);
+
+        if (status){
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerDay controller = fxmlLoader.<GamePlayControllerDay>getController();
+            controller.initData(5, new DataTable(5));
+            
+            levelRoot.getChildren().setAll(pane);
+        }else {
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+            AnchorPane pane=fxmlLoader.load();
+            
+            GamePlayControllerNight controller = fxmlLoader.<GamePlayControllerNight>getController();
+            controller.initData(5, new DataTable(5));
+            
+            levelRoot.getChildren().setAll(pane);
+        }
+       
     }
 
     @FXML
