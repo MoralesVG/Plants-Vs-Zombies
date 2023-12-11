@@ -62,7 +62,16 @@ public class GameMenuController {
         //System.out.println("restart called");
         Stage stage = (Stage) restartGameButton.getScene().getWindow();
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
+        
+        FXMLLoader fxmlLoader;
+        if(data.getStatus()) {
+        	fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+        }
+        else
+        {
+        	fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+        }
+        
         AnchorPane game=fxmlLoader.load();
         GamePlayController controller = fxmlLoader.<GamePlayController>getController();
         data=new DataTable(levelNumber);

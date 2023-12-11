@@ -62,6 +62,8 @@ public abstract class GamePlayController {
     @FXML
     protected ImageView GameMenuLoaderButton;
     @FXML
+    protected ImageView UndoButton;
+    @FXML
     protected ProgressBar progressBar;
     @FXML
     protected int levelNumber;
@@ -153,6 +155,11 @@ public abstract class GamePlayController {
         GameMenuController controller = fxmlLoader.<GameMenuController>getController();
         controller.initData(GamePlayRoot, levelNumber,d,sunCount,allPlants, allZombies, allMowers, timeElapsed, l.getZombieList1(), l.getZombieList2());
         stage.show();
+    }
+    
+    @FXML
+    void UndoButton(MouseEvent event) throws IOException {
+//    	d.restore();
     }
 
     public static void removePlant(Plant p){
@@ -413,8 +420,8 @@ public abstract class GamePlayController {
         }
     }
     public void gameLost() throws IOException{
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         AnchorPane pane=fxmlLoader.load();
         EndGameController controller = fxmlLoader.<EndGameController>getController();
         controller.initData(levelNumber, false,d);
@@ -422,8 +429,8 @@ public abstract class GamePlayController {
 
     }
     public void gameWon() throws IOException{
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         AnchorPane pane=fxmlLoader.load();
         EndGameController controller = fxmlLoader.<EndGameController>getController();
         controller.initData(levelNumber, true,d);

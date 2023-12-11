@@ -49,7 +49,7 @@ public class Main extends Application {
         finally {
             out.close();
             //System.out.println("Saved!");
-            System.exit(0);
+//            System.exit(0);
         }
     }
     public static void deserialize() throws ClassNotFoundException, FileNotFoundException, IOException{

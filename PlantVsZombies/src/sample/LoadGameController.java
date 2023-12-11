@@ -52,10 +52,19 @@ public class LoadGameController {
 
     @FXML
     void handleMouseClick(MouseEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
+    	DataTable d= (DataTable) gameStateList.getSelectionModel().getSelectedItem();
+    	FXMLLoader fxmlLoader;
+           if(d.getStatus()) {
+           	fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
+           }
+           else
+           {
+           	fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayNight.fxml"));
+           }
+//    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
 //        Main.deserialize();
         AnchorPane pane=fxmlLoader.load();
-        DataTable d= (DataTable) gameStateList.getSelectionModel().getSelectedItem();
+        
         GamePlayController controller = fxmlLoader.<GamePlayController>getController();
         controller.initData(d.getLevelNumber(),d);
         loadGameRoot.getChildren().setAll(pane);

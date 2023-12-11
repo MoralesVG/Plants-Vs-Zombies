@@ -74,7 +74,7 @@ public class MainPageController implements Initializable {
 
     @FXML
     void startGame(MouseEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlayDay.fxml"));
         AnchorPane pane=fxmlLoader.load();
         GamePlayController controller = fxmlLoader.<GamePlayController>getController();
         controller.initData(Main.getDatabase().getMaxLevel(),new DataTable(Main.getDatabase().getMaxLevel()));
