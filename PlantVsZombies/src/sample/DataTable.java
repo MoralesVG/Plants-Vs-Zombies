@@ -29,6 +29,7 @@ public class DataTable implements Serializable {
     public static final int LANE3=250;
     public static final int LANE4=350;
     public static final int LANE5=450;
+    private DataTableCaretaker DTcaretaker;
 
 //    private String filename;
     public DataTable(int levelNumber){
@@ -49,7 +50,27 @@ public class DataTable implements Serializable {
         zombieList1 = l.getZombieList1();
         zombieList2 = l.getZombieList2();
         status = LevelMenuController.status;
+        DTcaretaker = new DataTableCaretaker();
 
+    }
+    
+    public void restore(){
+        DataTable gameSession = DTcaretaker.getMemento().restore();
+        this.allLawnMowers = gameSession.getAllLawnMowers();
+        this.allPlants = gameSession.getAllPlants();
+        this.allZombie = gameSession.getAllZombie();
+        this.levelNumber = gameSession.getLevelNumber();
+        this.savingTimeStamp = gameSession.getSavingTimeStamp();
+        this.sunCount = gameSession.getSunCount();
+        this.timeElapsed = gameSession.getTimeElapsed();
+        this.zombieList1 = gameSession.getZombieList1();
+        this.zombieList2 = gameSession.getZombieList2();
+        this.status = gameSession.getStatus();
+        
+    }
+
+    public void backup(){
+        DTcaretaker.addMemento(new DataTableMemento(this));
     }
 
     public void update(int levelNumber, int sunCount, List<Plant> allPlants, List<Zombie> allZombie, List<LawnMower> allLawnMowers, double timeElapsed, ArrayList<Integer> zombieList1, ArrayList<Integer> zombieList2, boolean status) {
@@ -96,6 +117,10 @@ public class DataTable implements Serializable {
 
     public int getSunCount() {
         return sunCount;
+    }
+    
+    public void setSunCount(int count) {
+         sunCount = count;
     }
 
     public double getTimeElapsed() {

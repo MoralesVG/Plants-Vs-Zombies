@@ -83,7 +83,7 @@ public abstract class GamePlayController {
     protected static double timeElapsed;
     protected static Level l;
     public static List allZombies;
-    public static List allPlants;
+    public static List<Plant> allPlants;
     public static List allMowers;
     public static ArrayList<Integer> zombieList1;
     public static ArrayList<Integer> zombieList2;
@@ -159,7 +159,24 @@ public abstract class GamePlayController {
     
     @FXML
     void UndoButton(MouseEvent event) throws IOException {
-//    	d.restore();
+    	d.restore(); 	
+    	
+    	Plant lastPlant = allPlants.get(allPlants.size()-1);
+    	
+    	
+    	allMowers = d.getAllLawnMowers();
+        allPlants = d.getAllPlants();
+        allZombies = d.getAllZombie();
+        levelNumber = d.getLevelNumber();
+        sunCount = d.getSunCount();
+        timeElapsed = d.getTimeElapsed();
+        zombieList1 = d.getZombieList1();
+        zombieList2 = d.getZombieList2();
+        gameStatus = d.getStatus();
+        
+        
+        restoreSunCount(sunCount);
+        removePlant(lastPlant);
     }
 
     public static void removePlant(Plant p){
@@ -176,8 +193,15 @@ public abstract class GamePlayController {
     }
 
     public static void updateSunCount(int val) {
-        sunCount+=val;
-        getSunCountLabel().setText(Integer.toString(sunCount));
+    	d.setSunCount(sunCount);
+    	d.backup();
+    	sunCount+=val;
+        getSunCountLabel().setText(Integer.toString(sunCount));   
+        
+    }  
+    
+    public static void restoreSunCount(int val) {
+        getSunCountLabel().setText(Integer.toString(val));
     }
 
     public static Label getSunCountLabel() {
@@ -193,8 +217,12 @@ public abstract class GamePlayController {
                 Sun s = new Sun(sunPosition, 0, true);
                 s.makeImage(GamePlayRoot);
                 s.dropSun();
+                
+                
             }
         }));
+        
+        
         sunDropper.setCycleCount(Timeline.INDEFINITE);
         sunDropper.play();
         sunTimeline = sunDropper;
@@ -322,6 +350,7 @@ public abstract class GamePlayController {
                         Plant p = i.next();
                         //System.out.println("plant"+p.col+" "+p.row);
                         if (p.col == colIndex && p.row == rowIndex) {
+                        	d.backup();
                             p.img.setVisible(false);
                             p.img.setDisable(true);
                             allPlants.remove(p);
@@ -350,8 +379,10 @@ public abstract class GamePlayController {
                 }
                 if (flag) {
                     if (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) {
+                    	//d.backup();
                         placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
                         updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
+                       
                         SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
                     }
                     //else System.out.println("Not enough sun score");
